@@ -4,6 +4,7 @@ import Header from './components/header/header'
 import Landing from './pages/Landing';
 import Pokemon from './pages/Pokemon'
 import NewPokemon from './pages/newPokemon';
+import FavoritePokemons from './pages/favPokemons';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path='/' element={<Landing />} />
         <Route path='/pokemon' element={<Pokemon />} />
         <Route path='/newpoke' element={<NewPokemon />} />
+        <Route path='/favpoke' element={<FavoritePokemons />} />
       </Routes>
     </Router>
   );

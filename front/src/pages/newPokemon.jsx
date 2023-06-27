@@ -33,10 +33,13 @@ const NewPokemon = (props) => {
     <div className='p-8'>
       <div className='flex flex-col'>
         <input type='text' value={inputtedText} onChange={ChangeHandler} className='border border-gray-300' />
-        <button onClick={submitHandler} className='bg-green-500 text-white hover:bg-green-300'>submit</button>
+        <button onClick={submitHandler} className='bg-green-500 text-white hover:bg-green-300'>add to favorite</button>
       </div>
       <div className='flex flex-col'>
         {recievedData && <div className='flex flex-col items-center'>
+            <div>
+              <p>Favorite Pokemon Added!</p>
+            </div>
             <div>
               <img src={recievedData.sprites.front_default} />
             </div>
