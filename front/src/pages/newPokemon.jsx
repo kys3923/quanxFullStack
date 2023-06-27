@@ -40,9 +40,15 @@ const NewPokemon = (props) => {
             <div>
               <img src={recievedData.sprites.front_default} />
             </div>
-            <div>
-              <p>Pokemon ID: {recievedData.id}</p>
-              <p>Pokemon Name: {recievedData.species.name}</p>
+            <div className='border border-gray-300 rounded-md p-4'>
+              <div className='grid grid-cols-2 w-full gap-4'>
+                <p>Pokemon ID:</p>
+                <p>{recievedData.id}</p>
+              </div>
+              <div className='grid grid-cols-2 w-full gap-4'>
+                <p>Pokemon Name:</p>
+                <p>{recievedData.species.name}</p>
+              </div>
             </div>
 
           </div>
