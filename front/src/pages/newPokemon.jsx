@@ -15,9 +15,10 @@ const NewPokemon = (props) => {
     e.preventDefault()
     const requestToAPI = async () => {
       try {
-        let request = await axios.get(`${process.env.REACT_APP_SERVER_URL}/pokemon/getPokeData`)
+        let request = await axios.put(`${process.env.REACT_APP_SERVER_URL}/pokemon/getPokeData/${inputtedText}`)
         if(request.data) {
           console.log(request.data)
+          setRecievedData(request.data.pokemon)
         }
       } catch (error) {
         console.log(error)
@@ -29,10 +30,24 @@ const NewPokemon = (props) => {
 
 
   return (
-    <div>
-      <p>New Poke Page</p>
-      <input type='text' value={inputtedText} onChange={ChangeHandler} />
-      <button onClick={submitHandler}>submit</button>
+    <div className='p-8'>
+      <div className='flex flex-col'>
+        <input type='text' value={inputtedText} onChange={ChangeHandler} className='border border-gray-300' />
+        <button onClick={submitHandler} className='bg-green-500 text-white hover:bg-green-300'>submit</button>
+      </div>
+      <div className='flex flex-col'>
+        {recievedData && <div className='flex flex-col items-center'>
+            <div>
+              <img src={recievedData.sprites.front_default} />
+            </div>
+            <div>
+              <p>Pokemon ID: {recievedData.id}</p>
+              <p>Pokemon Name: {recievedData.species.name}</p>
+            </div>
+
+          </div>
+        }
+      </div>
     </div>
   );
 }
