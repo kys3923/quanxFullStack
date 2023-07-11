@@ -29,6 +29,7 @@ app.get('/test', (req, res) => {
 
 // controllers
 app.use('/pokemon', require('./routes/pokemon'))
+app.use('/auth', require('./routes/auth'))
 
 let server = app.listen(process.env.PORT || 8000, () => console.log(`server is running at 8000`))
 
