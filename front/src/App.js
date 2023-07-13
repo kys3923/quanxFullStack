@@ -7,6 +7,8 @@ import NewPokemon from './pages/newPokemon';
 import FavoritePokemons from './pages/favPokemons';
 import Login from './pages/auth/login';
 import RegisterAccount from './pages/auth/register';
+import ForgotPassword from './pages/auth/forgotpassword';
+import PasswordReset from './pages/auth/passwordReset';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Route path='/favpoke' element={<FavoritePokemons />} />
         <Route path='/account/login' element={<Login />} />
         <Route path='/account/register' element={<RegisterAccount />} />
+        <Route path='/account/forgotPassword' element={<ForgotPassword />} />
+        <Route path='/account/forgotPassword/:id' element={<PasswordReset />} />
       </Routes>
     </Router>
   );
