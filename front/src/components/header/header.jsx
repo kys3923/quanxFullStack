@@ -8,6 +8,7 @@ const Header = (props) => {
         <li className={listStyle}><a href='/'>home</a></li>
         <li className={listStyle}><a href='/pokemon'>PokeAPI</a></li>
         <li className={listStyle}><a href='/newpoke'>Add Fav</a></li>
+        <li className={listStyle}><a href='/testEmail'>Send Email</a></li>
         <li className={listStyle}><a href='/favpoke'>Favorite Pokemons</a></li>
         <li className={listStyle}><a href='/account/login'>account login</a></li>
       </ul>

@@ -1,6 +1,7 @@
 const User = require('../models/User')
 const ErrorResponse = require('../utils/errorResponse')
 const crypto = require('crypto')
+const sendEmail = require('../utils/sendEmail')
 
 exports.login = async (req, res, next) => {
 
@@ -55,6 +56,45 @@ exports.register = async (req, res, next) => {
   }
 }
 
+exports.testEmail = async (req, res, next) => {
+  const { emailTo, emailFrom, emailContent } = req.body
+
+  const emailMsg = `
+    <!DOCTYPE html>
+    <html>
+    <title>Test Email</title>
+    <head>
+    </head>
+    <body
+        style='width: 100%; background-color: #fdfdfd; '
+    >
+    <h1>This is Test Email</h1>
+    <p>${emailContent}</p>
+    </body>
+    </html>
+  `
+
+  const sendTestEmail = async () => {
+    try {
+      await sendEmail({
+        to: emailTo,
+        from: emailFrom,
+        subject: 'Test Email',
+        html: emailMsg
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  } 
+
+  sendTestEmail()
+
+  return res.status(200).json({
+    success: true,
+  })
+
+}
+
 exports.forgotPassword = async (req, res, next) => {
 
   const { email } = req.body
@@ -73,13 +113,27 @@ exports.forgotPassword = async (req, res, next) => {
 
     await user.save()
 
-    const resetUrl = `${process.env.FRONT_URL}/${resetToken}`
-
     // Sent Email
+
+    const emailMsg = `
+      <body>
+        <h1>This is password reset link</h1>
+
+        <a href='${process.env.FRONT_URL}/account/forgotPassword/${resetToken}'>Click here to reset password.</a>
+      </body>
+    `
+    await sendEmail({
+      to: email,
+      from: 'kys3923fang@gmail.com',
+      subject: 'Reset Password link',
+      html: emailMsg
+    })
+
     res.status(200).json({
       success: true,
       resetUrl: resetToken
     })
+
   } catch (error) {
     next(error)
   }
